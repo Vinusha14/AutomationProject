@@ -3,9 +3,11 @@ package queryParameterTesting;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+
 
 /*
 TODO
@@ -56,6 +58,36 @@ public class ApiKeyParameterTesting {
             ResponseEntity<String> responseEntity = restTemplate.getForEntity(templateUrl + apiKey, String.class);
             Assert.assertEquals("Given API key is expected to return a successful API response(200)",200,responseEntity.getStatusCodeValue());
         } catch(HttpClientErrorException exception){
+            System.out.println(exception.getMessage());
+        }
+    }
+    /*
+    Security Testing:
+    test the API cannot accept information of the resource requested in the request
+    and sends the bad request HTTP error
+    */
+    @Test
+    public void testResponseWithReturnFieldInformationInURI(){
+        String returnFieldInUrlExtension = "&description=The Holographic Principle and a Teapot";
+        try {
+            restTemplate.getForEntity(templateUrl + apiKey + returnFieldInUrlExtension, String.class);
+        } catch(HttpClientErrorException exception){
+            Assert.assertEquals("Without API key server is supposed to return 400 Bad Request error",400,exception.getRawStatusCode());
+            System.out.println(exception.getMessage());        }
+    }
+    /*
+    Security Testing:
+    test the API cannot accept HTTP urls (they need to be in HTTPs)
+    as a result sends the bad request HTTP error
+    */
+    @Test
+    public void testResponseWithHttpUrl(){
+        baseUrl="http://api.nasa.gov";
+        templateUrl = baseUrl + "/planetary/apod?api_key=";
+        try {
+            restTemplate.getForEntity(templateUrl + apiKey, String.class);
+        } catch(HttpClientErrorException exception){
+            Assert.assertEquals("With HTTP method in URL server is supposed to return 400 Bad Request error",400,exception.getRawStatusCode());
             System.out.println(exception.getMessage());
         }
     }

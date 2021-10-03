@@ -86,4 +86,19 @@ public class CountQueryParameterTesting {
             Assert.assertEquals("By Default if count param values is passed as empty response should return today's information",1,object.size());
         }
     }
+    /*
+    Destructive testing - to validate the API robustness by passing a malinformed long count value
+     */
+    @Test
+    public void testAPIRobustnessWithALargeCountParameterValue() throws ParseException {
+        int countValue = Integer.MAX_VALUE;
+        String countParamExtension="&count="+countValue;
+        try {
+            response = restTemplate.getForObject(templateUrl + apiKey + countParamExtension, String.class);
+        } catch(HttpClientErrorException ex){
+            Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
+            System.out.println(ex.getMessage());
+        }
+    }
+
 }

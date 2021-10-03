@@ -9,7 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.web.client.RestTemplate;
 
-import java.time.LocalDate;
 
 public class ThumbnailQueryParameterTesting {
     public static RestTemplate restTemplate;
