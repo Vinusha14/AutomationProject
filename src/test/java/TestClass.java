@@ -11,25 +11,23 @@ public class TestClass {
     public String baseUrl = "https://api.nasa.gov";
     public String apiKey = "cvxjev456MzhfJbw9JFrZOJIvMRByegGqqcbmFMI";
     public String templateUrl = baseUrl + "/planetary/apod?api_key=";
-    public String date = "2001-04-12";
+    public static RestTemplate restTemplate;
 
     @BeforeClass
-    public static void setUp() {
+    public static void setUpRestTemplate() {
+        restTemplate = new RestTemplate();
     }
 
     @Test
     public void test() throws ParseException {
-        RestTemplate restTemplate = new RestTemplate();
+        String date = "2001-04-12";
         String response = restTemplate.getForObject(templateUrl + apiKey + "&date=" + date, String.class);
         System.out.println(response);
         JSONParser parser = new JSONParser();
         JSONObject object = (JSONObject) parser.parse(response);
         String array = (String) object.get("date");
         Assert.assertEquals(date,array);
-    }
-    //date, count, start date, end date, thumbs
-    //invalid url
-    //valid url no data returned
+       }
 }
 
 
