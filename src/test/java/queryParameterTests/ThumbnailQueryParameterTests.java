@@ -6,7 +6,11 @@ import org.json.simple.parser.ParseException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import javax.xml.ws.http.HTTPException;
 
 
 public class ThumbnailQueryParameterTests {
@@ -21,7 +25,7 @@ public class ThumbnailQueryParameterTests {
         restTemplate = new RestTemplate();
     }
     @Test
-    public void testThumbnailQueryParameterTrue() throws ParseException {
+    public void testThumbnailQueryParameterTrue() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
         String dateValue = "2018-02-26";
         String dateParamExtension = "&date=" + dateValue;
         String thumbnailExtension = "&thumbs="+true;
@@ -32,7 +36,7 @@ public class ThumbnailQueryParameterTests {
         Assert.assertNotNull("Thumbnail url should not be null",thumbnailUrlValue);
     }
     @Test
-    public void testThumbnailQueryParameterTrueForNonVideoFiles() throws ParseException {
+    public void testThumbnailQueryParameterTrueForNonVideoFiles() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
         String dateValue = "2018-01-26";
         String dateParamExtension = "&date=" + dateValue;
         String thumbnailExtension = "&thumbs="+true;
@@ -43,7 +47,7 @@ public class ThumbnailQueryParameterTests {
         Assert.assertNull("Thumbnail url should not be null",thumbnailUrlValue);
     }
     @Test
-    public void testThumbnailQueryParameterFalseForVideoFiles() throws ParseException {
+    public void testThumbnailQueryParameterFalseForVideoFiles() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
         String dateValue = "2018-02-26";
         String dateParamExtension = "&date=" + dateValue;
         String thumbnailExtension = "&thumbs="+false;
@@ -54,7 +58,7 @@ public class ThumbnailQueryParameterTests {
         Assert.assertNull("Thumbnail url should not be null",thumbnailUrlValue);
     }
     @Test
-    public void testThumbnailQueryParameterFalseForNonVideoFiles() throws ParseException {
+    public void testThumbnailQueryParameterFalseForNonVideoFiles() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
         String dateValue = "2018-12-26";
         String dateParamExtension = "&date=" + dateValue;
         String thumbnailExtension = "&thumbs="+false;

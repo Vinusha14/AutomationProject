@@ -7,15 +7,14 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.xml.ws.http.HTTPException;
 import java.time.LocalDate;
 /*
 TODO -
- 1. Add loggers instead of printing on console
- 2. throw other http exceptions?
  3. add comments on the test
-
  */
 public class DateQueryParameterTests {
     public static RestTemplate restTemplate;
@@ -30,11 +29,19 @@ public class DateQueryParameterTests {
 
     @Test
     public void testDefaultDateResponse() throws ParseException {
-        String response = restTemplate.getForObject(templateUrl+apiKey,String.class);
-        JSONParser parser = new JSONParser();
-        JSONObject object = (JSONObject) parser.parse(response);
-        String dateValue = (String) object.get("date");
-        Assert.assertEquals("Date should be equal to today's date by default",dateValue, LocalDate.now().toString());
+        try {
+            String response = restTemplate.getForObject(templateUrl + apiKey, String.class);
+            JSONParser parser = new JSONParser();
+            JSONObject object = (JSONObject) parser.parse(response);
+            String dateValue = (String) object.get("date");
+            Assert.assertEquals("Date should be equal to today's date by default", dateValue, LocalDate.now().toString());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
+        } catch(HttpClientErrorException ex){
+            throw ex;
+        }
     }
 
     @Test
@@ -46,6 +53,10 @@ public class DateQueryParameterTests {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
             System.out.println(ex.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     @Test
@@ -57,6 +68,10 @@ public class DateQueryParameterTests {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
             System.out.println(ex.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     @Test
@@ -68,18 +83,29 @@ public class DateQueryParameterTests {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
             System.out.println(ex.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     @Test
     public void testWithEmptyDate() throws ParseException {
         String date = "";
-        String urlExtensionWithDate = "&date="+date;
-
-        String response = restTemplate.getForObject(templateUrl+apiKey+urlExtensionWithDate,String.class);
-        JSONParser parser = new JSONParser();
-        JSONObject object = (JSONObject) parser.parse(response);
-        String dateValue = (String) object.get("date");
-        Assert.assertEquals("Date should be equal to today's date by default",dateValue, LocalDate.now().toString());
+        String urlExtensionWithDate = "&date=" + date;
+        try {
+            String response = restTemplate.getForObject(templateUrl + apiKey + urlExtensionWithDate, String.class);
+            JSONParser parser = new JSONParser();
+            JSONObject object = (JSONObject) parser.parse(response);
+            String dateValue = (String) object.get("date");
+            Assert.assertEquals("Date should be equal to today's date by default", dateValue, LocalDate.now().toString());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
+        } catch(HttpClientErrorException ex){
+            throw ex;
+        }
     }
     @Test
     public void testWithInvalidDateFormat(){
@@ -90,6 +116,10 @@ public class DateQueryParameterTests {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
             System.out.println(ex.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     @Test
@@ -101,6 +131,10 @@ public class DateQueryParameterTests {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
             System.out.println(ex.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     @Test
@@ -112,6 +146,10 @@ public class DateQueryParameterTests {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
             System.out.println(ex.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     /*
@@ -120,11 +158,19 @@ public class DateQueryParameterTests {
     @Test
     public void testResponseWithValidDateQueryParam() throws ParseException {
         String date = "2001-04-12";
-        String response = restTemplate.getForObject(templateUrl + apiKey + "&date=" + date, String.class);
-        System.out.println(response);
-        JSONParser parser = new JSONParser();
-        JSONObject object = (JSONObject) parser.parse(response);
-        String array = (String) object.get("date");
-        Assert.assertEquals(date,array);
+        try {
+            String response = restTemplate.getForObject(templateUrl + apiKey + "&date=" + date, String.class);
+            System.out.println(response);
+            JSONParser parser = new JSONParser();
+            JSONObject object = (JSONObject) parser.parse(response);
+            String array = (String) object.get("date");
+            Assert.assertEquals(date, array);
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
+        } catch(HttpClientErrorException ex){
+            throw ex;
+        }
     }
 }

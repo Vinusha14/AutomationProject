@@ -2,7 +2,11 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.http.*;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import javax.xml.ws.http.HTTPException;
 
 
 public class APIHeadersTest {
@@ -21,7 +25,7 @@ public class APIHeadersTest {
     test also includes validation of the connection type as "keep-alive"
      */
     @Test
-    public void testHeadersInformationFromResponse(){
+    public void testHeadersInformationFromResponse() throws HTTPException, HttpClientErrorException, HttpServerErrorException {
         HttpHeaders headers = new HttpHeaders();
         HttpEntity requestEntity = new HttpEntity(headers);
         ResponseEntity<String> responseEntity = restTemplate.exchange(templateUrl + apiKey,

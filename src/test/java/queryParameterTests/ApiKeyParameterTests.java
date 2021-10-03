@@ -6,7 +6,10 @@ import org.junit.Test;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import javax.xml.ws.http.HTTPException;
 
 
 /*
@@ -29,10 +32,14 @@ public class ApiKeyParameterTests {
     @Test
     public void testResponseWithNoKeyInURI(){
         try {
-             String response = restTemplate.getForObject(templateUrl + apiKey, String.class);
+              restTemplate.getForObject(templateUrl + apiKey, String.class);
         } catch(HttpClientErrorException exception){
             Assert.assertEquals("Without API key server is supposed to return 403 error",403,exception.getRawStatusCode());
             System.out.println(exception.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     /*
@@ -42,10 +49,14 @@ public class ApiKeyParameterTests {
     public void testResponseWithInvalidKeyInURI(){
         apiKey="cvxjev456MzhfJbw9JqcbmFM";
         try {
-           String response = restTemplate.getForObject(templateUrl + apiKey, String.class);
+           restTemplate.getForObject(templateUrl + apiKey, String.class);
         } catch(HttpClientErrorException exception){
             Assert.assertEquals("Without API key server is supposed to return 403 error",403,exception.getRawStatusCode());
             System.out.println(exception.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     /*
@@ -59,6 +70,10 @@ public class ApiKeyParameterTests {
             Assert.assertEquals("Given API key is expected to return a successful API response(200)",200,responseEntity.getStatusCodeValue());
         } catch(HttpClientErrorException exception){
             System.out.println(exception.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     /*
@@ -68,12 +83,18 @@ public class ApiKeyParameterTests {
     */
     @Test
     public void testResponseWithReturnFieldInformationInURI(){
+        apiKey="cvxjev456MzhfJbw9JFrZOJIvMRByegGqqcbmFMI";
         String returnFieldInUrlExtension = "&description=The Holographic Principle and a Teapot";
         try {
             restTemplate.getForEntity(templateUrl + apiKey + returnFieldInUrlExtension, String.class);
         } catch(HttpClientErrorException exception){
             Assert.assertEquals("Without API key server is supposed to return 400 Bad Request error",400,exception.getRawStatusCode());
-            System.out.println(exception.getMessage());        }
+            System.out.println(exception.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
+        }
     }
     /*
     Security Testing:
@@ -82,6 +103,7 @@ public class ApiKeyParameterTests {
     */
     @Test
     public void testResponseWithHttpUrl(){
+        apiKey="cvxjev456MzhfJbw9JFrZOJIvMRByegGqqcbmFMI";
         baseUrl="http://api.nasa.gov";
         templateUrl = baseUrl + "/planetary/apod?api_key=";
         try {
@@ -89,6 +111,10 @@ public class ApiKeyParameterTests {
         } catch(HttpClientErrorException exception){
             Assert.assertEquals("With HTTP method in URL server is supposed to return 400 Bad Request error",400,exception.getRawStatusCode());
             System.out.println(exception.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
 }

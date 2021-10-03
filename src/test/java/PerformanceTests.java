@@ -5,7 +5,11 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.util.StopWatch;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import javax.xml.ws.http.HTTPException;
 
 
 public class PerformanceTests {
@@ -60,7 +64,7 @@ public class PerformanceTests {
     Test for performance of API with max limit of count parameter (100) & with thumbnail information
    */
     @Test
-    public void testPerformanceOfAPIForMaxCountAndThumbnailParameterRequest(){
+    public void testPerformanceOfAPIForMaxCountAndThumbnailParameterRequest() throws HttpServerErrorException{
         HttpHeaders headers = new HttpHeaders();
         HttpEntity requestEntity = new HttpEntity(headers);
         int countOfDates = 100;
@@ -69,10 +73,14 @@ public class PerformanceTests {
         final StopWatch stopWatch = new StopWatch();
         //Measure response execution time
         stopWatch.start();
-        restTemplate.exchange(templateUrl + apiKey + countUrlExtension + thumbnailExtension,
-                HttpMethod.GET,
-                requestEntity,
-                String.class);
+        try {
+            restTemplate.exchange(templateUrl + apiKey + countUrlExtension + thumbnailExtension,
+                    HttpMethod.GET,
+                    requestEntity,
+                    String.class);
+        } catch(HTTPException| HttpServerErrorException| HttpClientErrorException ex){
+            Assert.fail(ex.getMessage());
+        }
         stopWatch.stop();
         Assert.assertTrue("Response time for"+countOfDates+" image information with thumbnail url information request " +
                 " should take less than 15 seconds",stopWatch.getTotalTimeSeconds()<15);

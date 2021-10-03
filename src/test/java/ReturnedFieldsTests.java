@@ -5,7 +5,11 @@ import org.json.simple.parser.ParseException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import javax.xml.ws.http.HTTPException;
 
 public class ReturnedFieldsTests {
     public static RestTemplate restTemplate;
@@ -22,7 +26,7 @@ public class ReturnedFieldsTests {
     Test for not nullable fields in API response are not null
      */
     @Test
-    public void testMandatoryReturnFieldsAreReturnedFromResponse() throws ParseException {
+    public void testMandatoryReturnFieldsAreReturnedFromResponse() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
         String dateValue = "2021-01-01";
         String dateParamExtension = "&start_date=" + dateValue;
         response = restTemplate.getForObject(templateUrl + apiKey + dateParamExtension, String.class);

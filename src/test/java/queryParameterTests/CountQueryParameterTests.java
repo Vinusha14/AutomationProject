@@ -7,7 +7,10 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import javax.xml.ws.http.HTTPException;
 
 public class CountQueryParameterTests {
     public static RestTemplate restTemplate;
@@ -25,10 +28,18 @@ public class CountQueryParameterTests {
     public void testResponseForAValidCountParameterValue() throws ParseException {
         int countValue = 30;
         String countParamExtension="&count="+countValue;
-        response = restTemplate.getForObject(templateUrl + apiKey + countParamExtension, String.class);
-        JSONParser parser = new JSONParser();
-        JSONArray object = (JSONArray) parser.parse(response);
-        Assert.assertEquals("Response should return "+countValue+"images",countValue,object.size());
+        try {
+            response = restTemplate.getForObject(templateUrl + apiKey + countParamExtension, String.class);
+            JSONParser parser = new JSONParser();
+            JSONArray object = (JSONArray) parser.parse(response);
+            Assert.assertEquals("Response should return "+countValue+"images",countValue,object.size());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
+        } catch(HttpClientErrorException ex){
+                throw ex;
+        }
     }
 
     @Test
@@ -40,6 +51,10 @@ public class CountQueryParameterTests {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
             System.out.println(ex.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     @Test
@@ -51,6 +66,10 @@ public class CountQueryParameterTests {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
             System.out.println(ex.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     @Test
@@ -62,6 +81,10 @@ public class CountQueryParameterTests {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
             System.out.println(ex.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     @Test
@@ -73,6 +96,10 @@ public class CountQueryParameterTests {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
             System.out.println(ex.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     @Test
@@ -84,6 +111,10 @@ public class CountQueryParameterTests {
             JSONParser parser = new JSONParser();
             JSONArray object = (JSONArray) parser.parse(response);
             Assert.assertEquals("By Default if count param values is passed as empty response should return today's information",1,object.size());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
     /*
@@ -98,6 +129,10 @@ public class CountQueryParameterTests {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
             System.out.println(ex.getMessage());
+        } catch(HTTPException ex){
+            throw ex;
+        } catch(HttpServerErrorException ex){
+            throw ex;
         }
     }
 

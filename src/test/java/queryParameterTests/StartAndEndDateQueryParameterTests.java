@@ -7,8 +7,10 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.xml.ws.http.HTTPException;
 import java.time.LocalDate;
 
 public class StartAndEndDateQueryParameterTests {
@@ -26,7 +28,7 @@ public class StartAndEndDateQueryParameterTests {
     Test API response given a valid start date
      */
     @Test
-    public void testResponseGivenAStartDate() throws ParseException {
+    public void testResponseGivenAStartDate() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
         String dateValue = LocalDate.now().minusDays(1).toString();
         String startDateParamExtension = "&start_date=" + dateValue;
         response = restTemplate.getForObject(templateUrl + apiKey + startDateParamExtension, String.class);
@@ -39,7 +41,7 @@ public class StartAndEndDateQueryParameterTests {
     Test the API response with valid start and end date range
      */
     @Test
-    public void testResponseGivenARangeOfDates() throws ParseException {
+    public void testResponseGivenARangeOfDates() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
         int rangeOfDays = 9;
         LocalDate startDate = LocalDate.now().minusDays(10);
         String endDateValue = startDate.plusDays(rangeOfDays).toString();
@@ -69,7 +71,7 @@ public class StartAndEndDateQueryParameterTests {
      Test the API response with end date later than the start date
     */
     @Test
-    public void testResponseStartDateGreaterThanEndDate(){
+    public void testResponseStartDateGreaterThanEndDate() throws HTTPException, HttpServerErrorException{
         String startDate = "2021-01-09";
         String endDate = "1997-02-20";
         String dateParamExtension = "&start_date=" + startDate + "&end_date=" + endDate;
@@ -85,7 +87,7 @@ public class StartAndEndDateQueryParameterTests {
     Test the API response with a combination of date, start date and end date
     */
     @Test
-    public void testResponseWithDateStartDateAndEndDate(){
+    public void testResponseWithDateStartDateAndEndDate() throws HTTPException,  HttpServerErrorException{
         String startDate = "1997-02-20";
         String endDate = "2021-01-09";
         String date = LocalDate.now().toString();

@@ -6,9 +6,12 @@ import org.json.simple.parser.ParseException;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.imageio.ImageIO;
+import javax.xml.ws.http.HTTPException;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
@@ -19,18 +22,18 @@ public class ImageTests {
     public static String apiKey = "cvxjev456MzhfJbw9JFrZOJIvMRByegGqqcbmFMI";
     public static String templateUrl = baseUrl + "/planetary/apod?api_key=";
     public static String response;
+    public static String dateExtensionUrl="&date=2021-10-02";
 
     @BeforeClass
     public static void setUpRestTemplate(){
         restTemplate = new RestTemplate();
-        response = restTemplate.getForObject(templateUrl+apiKey,String.class);
-
     }
     /*
     Test If the URI returned from API response is a valid url which returns the image
      */
     @Test
-    public void testImageUriIsSuccessfullyNavigated() throws ParseException, IOException {
+    public void testImageUriIsSuccessfullyNavigated() throws HTTPException, HttpClientErrorException, HttpServerErrorException, IOException, ParseException {
+        response = restTemplate.getForObject(templateUrl + apiKey + dateExtensionUrl, String.class);
         JSONParser parser = new JSONParser();
         JSONObject object = (JSONObject) parser.parse(response);
         String urlValue = (String) object.get("url");
@@ -46,7 +49,8 @@ public class ImageTests {
     Verify if the private domain image has copy right information
      */
     @Test
-    public void testForCopyrightInformationOnAPrivateDomainImage() throws ParseException {
+    public void testForCopyrightInformationOnAPrivateDomainImage() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
+        response = restTemplate.getForObject(templateUrl + apiKey + dateExtensionUrl, String.class);
         JSONParser parser = new JSONParser();
         JSONObject object = (JSONObject) parser.parse(response);
         String copyrightInformation = (String) object.get("copyright");
@@ -60,7 +64,7 @@ public class ImageTests {
     regardless
      */
     @Test
-    public void testForHighResolutionImagesWithHdParamFalse() throws ParseException {
+    public void testForHighResolutionImagesWithHdParamFalse() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
         String hdQueryParameterExtension = "&hd="+false;
         response = restTemplate.getForObject(templateUrl+apiKey+hdQueryParameterExtension,String.class);
         JSONParser parser = new JSONParser();
@@ -75,7 +79,7 @@ public class ImageTests {
        regardless
         */
     @Test
-    public void testForHighResolutionImagesWithHdParamTrue() throws ParseException {
+    public void testForHighResolutionImagesWithHdParamTrue() throws HTTPException, HttpClientErrorException, HttpServerErrorException, ParseException {
         String hdQueryParameterExtension = "&hd="+true;
         response = restTemplate.getForObject(templateUrl+apiKey+hdQueryParameterExtension,String.class);
         JSONParser parser = new JSONParser();

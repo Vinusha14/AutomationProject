@@ -3,7 +3,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
+
+import javax.xml.ws.http.HTTPException;
 
 public class HTTPMethodTests {
     public static RestTemplate restTemplate;
@@ -20,7 +23,7 @@ public class HTTPMethodTests {
     Test to validate API throws the Method not found 405 exception with POST
      */
     @Test
-    public void testAPIResponseWithPOSTMethod(){
+    public void testAPIResponseWithPOSTMethod() throws HTTPException, HttpServerErrorException{
         HttpHeaders headers = new HttpHeaders();
         HttpEntity requestEntity = new HttpEntity(headers);
         try {
@@ -38,7 +41,7 @@ public class HTTPMethodTests {
    Test to validate API throws the Method not found 405 exception with DELETE
     */
     @Test
-    public void testAPIResponseWithDeleteMethod(){
+    public void testAPIResponseWithDeleteMethod() throws HTTPException,HttpServerErrorException{
         HttpHeaders headers = new HttpHeaders();
         HttpEntity requestEntity = new HttpEntity(headers);
         try {
@@ -56,7 +59,7 @@ public class HTTPMethodTests {
  Test to validate API throws the Method not found 405 exception with PUT
   */
     @Test
-    public void testAPIResponseWithPutMethod(){
+    public void testAPIResponseWithPutMethod() throws HTTPException, HttpServerErrorException{
         HttpHeaders headers = new HttpHeaders();
         HttpEntity requestEntity = new HttpEntity(headers);
         try {
