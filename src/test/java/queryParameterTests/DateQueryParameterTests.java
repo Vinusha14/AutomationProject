@@ -12,10 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.xml.ws.http.HTTPException;
 import java.time.LocalDate;
-/*
-TODO -
- 3. add comments on the test
- */
+
 public class DateQueryParameterTests {
     public static RestTemplate restTemplate;
     public String baseUrl = "https://api.nasa.gov";
@@ -26,7 +23,11 @@ public class DateQueryParameterTests {
     public static void setUpRestTemplate(){
         restTemplate = new RestTemplate();
     }
-
+    /*
+    Test Response from API without passing any date parameter in the request
+    which fetches the image information by default as today
+    this test is to validate this functionality of the API
+     */
     @Test
     public void testDefaultDateResponse() throws ParseException {
         try {
@@ -43,7 +44,10 @@ public class DateQueryParameterTests {
             throw ex;
         }
     }
-
+    /*
+    Test API response when request is sent with date parameter before 1995 which is the
+    minimum limit of date parameter you can send to the API
+     */
     @Test
     public void testDateBefore1995(){
         String date = "1994-02-26";
@@ -59,6 +63,10 @@ public class DateQueryParameterTests {
             throw ex;
         }
     }
+    /*
+    Test API response when request is sent with date parameter after today which is the
+    max limit of date parameter you can send to the API
+     */
     @Test
     public void testDateAfterToday(){
         String date = LocalDate.now().plusDays(1).toString();
@@ -74,6 +82,9 @@ public class DateQueryParameterTests {
             throw ex;
         }
     }
+    /*
+    Test API response to return bad request error when request is sent with date parameter as null
+     */
     @Test
     public void testDateWithNull(){
         String date = null;
@@ -89,6 +100,10 @@ public class DateQueryParameterTests {
             throw ex;
         }
     }
+    /*
+    Test API response to return today's image information(default behaviour)
+     when request is sent with date parameter as empty
+    */
     @Test
     public void testWithEmptyDate() throws ParseException {
         String date = "";
@@ -107,6 +122,10 @@ public class DateQueryParameterTests {
             throw ex;
         }
     }
+    /*
+    Test API response to return bad request error when request is
+    sent with date parameter with invalid format 21-12-01 (accepted format YYYY-MM-DD)
+     */
     @Test
     public void testWithInvalidDateFormat(){
         String date = "21-12-01";
@@ -122,6 +141,10 @@ public class DateQueryParameterTests {
             throw ex;
         }
     }
+    /*
+    Test API response to return bad request error when request is
+    sent with date parameter with invalid format 2021.01.01 (accepted format YYYY-MM-DD)
+     */
     @Test
     public void testWithInvalidDateFormatInSeperators(){
         String date = "2021.01.01";
@@ -137,6 +160,10 @@ public class DateQueryParameterTests {
             throw ex;
         }
     }
+    /*
+    Test API response to return bad request error when request is
+    sent with date parameter with invalid format 2021/01/01 (accepted format YYYY-MM-DD)
+     */
     @Test
     public void testWithInvalidDateFormatInSeperatorsVariation(){
         String date = "2021/01/01";
