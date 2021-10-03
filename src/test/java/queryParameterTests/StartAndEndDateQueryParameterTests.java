@@ -1,4 +1,4 @@
-package queryParameterTesting;
+package queryParameterTests;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 
-public class StartAndEndDateQueryParameterTesting {
+public class StartAndEndDateQueryParameterTests {
     public static RestTemplate restTemplate;
     public static String baseUrl = "https://api.nasa.gov";
     public static String apiKey = "cvxjev456MzhfJbw9JFrZOJIvMRByegGqqcbmFMI";

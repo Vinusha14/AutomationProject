@@ -8,7 +8,7 @@ import org.springframework.util.StopWatch;
 import org.springframework.web.client.RestTemplate;
 
 
-public class PerformanceTestingApodAPI {
+public class PerformanceTests {
     public static RestTemplate restTemplate;
     public static String baseUrl = "https://api.nasa.gov";
     public static String apiKey = "cvxjev456MzhfJbw9JFrZOJIvMRByegGqqcbmFMI";

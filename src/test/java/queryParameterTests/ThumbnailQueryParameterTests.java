@@ -1,6 +1,5 @@
-package queryParameterTesting;
+package queryParameterTests;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -10,7 +9,7 @@ import org.junit.Test;
 import org.springframework.web.client.RestTemplate;
 
 
-public class ThumbnailQueryParameterTesting {
+public class ThumbnailQueryParameterTests {
     public static RestTemplate restTemplate;
     public static String baseUrl = "https://api.nasa.gov";
     public static String apiKey = "cvxjev456MzhfJbw9JFrZOJIvMRByegGqqcbmFMI";

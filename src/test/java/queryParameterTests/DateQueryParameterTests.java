@@ -1,4 +1,4 @@
-package queryParameterTesting;
+package queryParameterTests;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -17,7 +17,7 @@ TODO -
  3. add comments on the test
 
  */
-public class DateQueryParameterTesting {
+public class DateQueryParameterTests {
     public static RestTemplate restTemplate;
     public String baseUrl = "https://api.nasa.gov";
     public String apiKey = "cvxjev456MzhfJbw9JFrZOJIvMRByegGqqcbmFMI";
@@ -113,5 +113,18 @@ public class DateQueryParameterTesting {
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
             System.out.println(ex.getMessage());
         }
+    }
+    /*
+    Test to validate the response returns the specific (valid) date information requested accurately
+     */
+    @Test
+    public void testResponseWithValidDateQueryParam() throws ParseException {
+        String date = "2001-04-12";
+        String response = restTemplate.getForObject(templateUrl + apiKey + "&date=" + date, String.class);
+        System.out.println(response);
+        JSONParser parser = new JSONParser();
+        JSONObject object = (JSONObject) parser.parse(response);
+        String array = (String) object.get("date");
+        Assert.assertEquals(date,array);
     }
 }

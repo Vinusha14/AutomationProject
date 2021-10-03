@@ -1,4 +1,4 @@
-package queryParameterTesting;
+package queryParameterTests;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -13,7 +13,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 
-public class ImageTesting {
+public class ImageTests {
     public static RestTemplate restTemplate;
     public static String baseUrl = "https://api.nasa.gov";
     public static String apiKey = "cvxjev456MzhfJbw9JFrZOJIvMRByegGqqcbmFMI";

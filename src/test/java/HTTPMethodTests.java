@@ -5,7 +5,7 @@ import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-public class TestAPIWithInvalidHTTPMethod {
+public class HTTPMethodTests {
     public static RestTemplate restTemplate;
     public static String baseUrl = "https://api.nasa.gov";
     public static String apiKey = "cvxjev456MzhfJbw9JFrZOJIvMRByegGqqcbmFMI";

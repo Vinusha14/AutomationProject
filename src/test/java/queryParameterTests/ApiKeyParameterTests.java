@@ -1,4 +1,4 @@
-package queryParameterTesting;
+package queryParameterTests;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 TODO
 1. Handle timeout?
  */
-public class ApiKeyParameterTesting {
+public class ApiKeyParameterTests {
     public static RestTemplate restTemplate;
     public String baseUrl = "https://api.nasa.gov";
     public String apiKey = "";
