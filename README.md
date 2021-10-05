@@ -88,13 +88,13 @@ https://github.com/Vinusha14/AutomationProject
 3. Test cases part of this automation framework cover extensive (positive, negative with valid and invalid inputs, boundary value and destructive) testing of all query parameters API exposes
 4. Framework also covers basic Performance sanity tests to measure the response time from the API calls including stress and load tests
 5. Security and authorization testing aspect included in the framework (APIKeyParameterTest)
-6. Handling multiple HTTP status code responses from API not just 200 and happy path. eg: 400 bad request, 405 method not allowed,
+6. Handling multiple HTTP status code responses from API not just 200 and happy path. eg: 400 bad request, 405 method not allowed etc
 7. Clear and self-explanatory documentation of tests for ease of a user to execute future extension of framework 
 8. Negative testing with unsupported HTTP methods for endpoint
-10. Testing API requests in isolation
-11. Testing multiple query parameters together
-12. Validate HTTP headers of the API
-13. Validating API payload - JSON
+9. Testing API requests in isolation
+10. Testing multiple query parameters together
+11. Validate HTTP headers of the API
+12. Validating API payload - JSON
     
 ##CONS: <a name="cons"></a>
 1. Including Loggers in the tests for easy categorization of the type of error or to send Logging information to files/databases
