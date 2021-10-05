@@ -34,31 +34,47 @@ public class PerformanceTest {
         final StopWatch stopWatch = new StopWatch();
         //Measure response execution time
         stopWatch.start();
-        restTemplate.exchange(templateUrl + apiKey,
-                HttpMethod.GET,
-                requestEntity,
-                String.class);
-        stopWatch.stop();
-        Assert.assertTrue("Response time for today's image information should take less than 3 seconds", stopWatch.getTotalTimeSeconds() < 3);
+        try {
+            restTemplate.exchange(templateUrl + apiKey,
+                    HttpMethod.GET,
+                    requestEntity,
+                    String.class);
+            stopWatch.stop();
+            Assert.assertTrue("Response time for today's image information should take less than 3 seconds", stopWatch.getTotalTimeSeconds() < 3);
+        } catch(HTTPException ex){
+            Assert.fail("HTTP Exception is not expected "+ex.getMessage());
+        } catch(HttpServerErrorException ex){
+            Assert.fail("HTTPServerError Exception is not expected "+ex.getMessage());
+        } catch(HttpClientErrorException ex){
+            Assert.fail("HTTPClientError Exception is not expected "+ex.getMessage());
+        }
     }
     /*
     Test for performance of API with max limit of count parameter (100)
      */
     @Test
-    public void testPerformanceOfAPIForMaxCountParameterRequest(){
+    public void testPerformanceOfAPIForMaxCountParameterRequest() {
         HttpHeaders headers = new HttpHeaders();
         HttpEntity requestEntity = new HttpEntity(headers);
         int countOfDates = 100;
-        String countUrlExtension = "&count="+countOfDates;
+        String countUrlExtension = "&count=" + countOfDates;
         final StopWatch stopWatch = new StopWatch();
         //Measure response execution time
         stopWatch.start();
-        restTemplate.exchange(templateUrl + apiKey + countUrlExtension,
-                HttpMethod.GET,
-                requestEntity,
-                String.class);
-        stopWatch.stop();
-        Assert.assertTrue("Response time for"+countOfDates+" image information should take less than 13 seconds but took "+stopWatch.getTotalTimeSeconds(),stopWatch.getTotalTimeSeconds()<20);
+        try {
+            restTemplate.exchange(templateUrl + apiKey + countUrlExtension,
+                    HttpMethod.GET,
+                    requestEntity,
+                    String.class);
+            stopWatch.stop();
+            Assert.assertTrue("Response time for" + countOfDates + " image information should take less than 13 seconds but took " + stopWatch.getTotalTimeSeconds(), stopWatch.getTotalTimeSeconds() < 20);
+        }catch(HTTPException ex){
+            Assert.fail("HTTP Exception is not expected "+ex.getMessage());
+        } catch(HttpServerErrorException ex){
+            Assert.fail("HTTPServerError Exception is not expected "+ex.getMessage());
+        } catch(HttpClientErrorException ex){
+            Assert.fail("HTTPClientError Exception is not expected "+ex.getMessage());
+        }
     }
     /*
     Test for performance of API with max limit of count parameter (100) & with thumbnail information

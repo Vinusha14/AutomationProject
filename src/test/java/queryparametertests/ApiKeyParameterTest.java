@@ -33,9 +33,9 @@ public class ApiKeyParameterTest {
         } catch(HttpClientErrorException exception){
             Assert.assertEquals("Without API key server is supposed to return 403 error",403,exception.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected"+ex.getMessage());
         }
     }
     /*
@@ -49,9 +49,9 @@ public class ApiKeyParameterTest {
         } catch(HttpClientErrorException exception){
             Assert.assertEquals("Without API key server is supposed to return 403 error",403,exception.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected"+ex.getMessage());
         }
     }
     /*
@@ -68,9 +68,9 @@ public class ApiKeyParameterTest {
         } catch(HttpClientErrorException exception){
             Assert.assertEquals("Without API key server is supposed to return 400 Bad Request error",400,exception.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected"+ex.getMessage());
         }
     }
     /*
@@ -88,9 +88,9 @@ public class ApiKeyParameterTest {
         } catch(HttpClientErrorException exception){
             Assert.assertEquals("With HTTP method in URL server is supposed to return 400 Bad Request error",400,exception.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected"+ex.getMessage());
         }
     }
 }

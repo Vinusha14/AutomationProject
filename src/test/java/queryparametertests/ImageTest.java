@@ -50,12 +50,20 @@ public class ImageTest {
      */
     @Test
     public void testForCopyrightInformationOnAPrivateDomainImage() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
-        response = restTemplate.getForObject(templateUrl + apiKey + dateExtensionUrl, String.class);
-        JSONParser parser = new JSONParser();
-        JSONObject object = (JSONObject) parser.parse(response);
-        String copyrightInformation = (String) object.get("copyright");
+        try {
+            response = restTemplate.getForObject(templateUrl + apiKey + dateExtensionUrl, String.class);
+            JSONParser parser = new JSONParser();
+            JSONObject object = (JSONObject) parser.parse(response);
+            String copyrightInformation = (String) object.get("copyright");
 
-        Assert.assertNotNull("Copyright information should be displayed for a private domain image",copyrightInformation);
+            Assert.assertNotNull("Copyright information should be displayed for a private domain image", copyrightInformation);
+        } catch(HTTPException ex){
+            Assert.fail("HTTP Exception is not expected "+ex.getMessage());
+        } catch(HttpServerErrorException ex){
+            Assert.fail("HTTPServerError Exception is not expected "+ex.getMessage());
+        } catch(HttpClientErrorException ex){
+            Assert.fail("HTTPClientError Exception is not expected "+ex.getMessage());
+        }
     }
 
     /*

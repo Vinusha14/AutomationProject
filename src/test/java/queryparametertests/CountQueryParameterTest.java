@@ -34,11 +34,11 @@ public class CountQueryParameterTest {
             JSONArray object = (JSONArray) parser.parse(response);
             Assert.assertEquals("Response should return "+countValue+"images",countValue,object.size());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected"+ex.getMessage());
         } catch(HttpClientErrorException ex){
-                throw ex;
+            Assert.fail("HttpClientErrorException is not expected"+ex.getMessage());
         }
     }
 
@@ -51,9 +51,9 @@ public class CountQueryParameterTest {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected "+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTPServer Error Exception is not expected "+ex.getMessage());
         }
     }
     @Test
@@ -65,9 +65,9 @@ public class CountQueryParameterTest {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected "+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTPServerError Exception is not expected "+ex.getMessage());
         }
     }
     @Test
@@ -79,9 +79,9 @@ public class CountQueryParameterTest {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected "+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected "+ex.getMessage());
         }
     }
     @Test
@@ -94,9 +94,9 @@ public class CountQueryParameterTest {
             JSONArray object = (JSONArray) parser.parse(response);
             Assert.assertEquals("By Default if count param values is passed as empty response should return today's information",1,object.size());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected "+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTPServerError Exception is not expected "+ex.getMessage());
         }
     }
     /*
@@ -111,9 +111,9 @@ public class CountQueryParameterTest {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected "+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected "+ex.getMessage());
         }
     }
 

@@ -29,7 +29,7 @@ public class StartAndEndDateQueryParameterTest {
      */
     @Test
     public void testResponseGivenAStartDate() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
-        String dateValue = LocalDate.now().minusDays(1).toString();
+        String dateValue = "2021-10-04";
         String startDateParamExtension = "&start_date=" + dateValue;
         response = restTemplate.getForObject(templateUrl + apiKey + startDateParamExtension, String.class);
         JSONParser parser = new JSONParser();
@@ -46,10 +46,18 @@ public class StartAndEndDateQueryParameterTest {
         LocalDate startDate = LocalDate.now().minusDays(10);
         String endDateValue = startDate.plusDays(rangeOfDays).toString();
         String dateParamExtension = "&start_date=" + startDate + "&end_date=" + endDateValue;
-        response = restTemplate.getForObject(templateUrl + apiKey + dateParamExtension, String.class);
-        JSONParser parser = new JSONParser();
-        JSONArray object = (JSONArray) parser.parse(response);
-        Assert.assertEquals("Response should return " + rangeOfDays + 1 + "images information", rangeOfDays + 1, object.size());
+        try {
+            response = restTemplate.getForObject(templateUrl + apiKey + dateParamExtension, String.class);
+            JSONParser parser = new JSONParser();
+            JSONArray object = (JSONArray) parser.parse(response);
+            Assert.assertEquals("Response should return " + rangeOfDays + 1 + "images information", rangeOfDays + 1, object.size());
+        } catch(HTTPException ex){
+            Assert.fail("HTTP Exception is not expected "+ex.getMessage());
+        } catch(HttpServerErrorException ex){
+            Assert.fail("HTTPServerError Exception is not expected "+ex.getMessage());
+        } catch(HttpClientErrorException ex){
+            Assert.fail("HTTPClientError Exception is not expected "+ex.getMessage());
+        }
     }
 
     /*

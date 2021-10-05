@@ -37,11 +37,11 @@ public class DateQueryParameterTest {
             String dateValue = (String) object.get("date");
             Assert.assertEquals("Date should be equal to today's date by default", dateValue, LocalDate.now().toString());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server error Exception is not expected"+ex.getMessage());
         } catch(HttpClientErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Client error Exception is not expected"+ex.getMessage());
         }
     }
     /*
@@ -57,9 +57,9 @@ public class DateQueryParameterTest {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected"+ex.getMessage());
         }
     }
     /*
@@ -75,9 +75,9 @@ public class DateQueryParameterTest {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected"+ex.getMessage());
         }
     }
     /*
@@ -92,9 +92,9 @@ public class DateQueryParameterTest {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected"+ex.getMessage());
         }
     }
     /*
@@ -112,11 +112,11 @@ public class DateQueryParameterTest {
             String dateValue = (String) object.get("date");
             Assert.assertEquals("Date should be equal to today's date by default", dateValue, LocalDate.now().toString());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected"+ex.getMessage());
         } catch(HttpClientErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Client Error Exception is not expected"+ex.getMessage());
         }
     }
     /*
@@ -132,9 +132,9 @@ public class DateQueryParameterTest {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected"+ex.getMessage());
         }
     }
     /*
@@ -150,9 +150,9 @@ public class DateQueryParameterTest {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected"+ex.getMessage());
         }
     }
     /*
@@ -168,9 +168,9 @@ public class DateQueryParameterTest {
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected"+ex.getMessage());
         }
     }
     /*
@@ -186,11 +186,11 @@ public class DateQueryParameterTest {
             String array = (String) object.get("date");
             Assert.assertEquals(date, array);
         } catch(HTTPException ex){
-            throw ex;
+            Assert.fail("HTTP Exception is not expected"+ex.getMessage());
         } catch(HttpServerErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Server Error Exception is not expected"+ex.getMessage());
         } catch(HttpClientErrorException ex){
-            throw ex;
+            Assert.fail("HTTP Client Error Exception is not expected"+ex.getMessage());
         }
     }
 }

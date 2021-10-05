@@ -28,34 +28,58 @@ public class ThumbnailQueryParameterTest {
     public void testThumbnailQueryParameterTrue() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
         String dateValue = "2018-02-26";
         String dateParamExtension = "&date=" + dateValue;
-        String thumbnailExtension = "&thumbs="+true;
-        response = restTemplate.getForObject(templateUrl + apiKey + dateParamExtension + thumbnailExtension, String.class);
-        JSONParser parser = new JSONParser();
-        JSONObject object = (JSONObject) parser.parse(response);
-        String thumbnailUrlValue = (String)object.get("thumbnail_url");
-        Assert.assertNotNull("Thumbnail url should not be null",thumbnailUrlValue);
+        String thumbnailExtension = "&thumbs=" + true;
+        try {
+            response = restTemplate.getForObject(templateUrl + apiKey + dateParamExtension + thumbnailExtension, String.class);
+            JSONParser parser = new JSONParser();
+            JSONObject object = (JSONObject) parser.parse(response);
+            String thumbnailUrlValue = (String) object.get("thumbnail_url");
+            Assert.assertNotNull("Thumbnail url should not be null", thumbnailUrlValue);
+        }catch(HTTPException ex){
+            Assert.fail("HTTP Exception is not expected "+ex.getMessage());
+        } catch(HttpServerErrorException ex){
+            Assert.fail("HTTPServerError Exception is not expected "+ex.getMessage());
+        } catch(HttpClientErrorException ex){
+            Assert.fail("HTTPClientError Exception is not expected "+ex.getMessage());
+        }
     }
     @Test
     public void testThumbnailQueryParameterTrueForNonVideoFiles() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
         String dateValue = "2018-01-26";
         String dateParamExtension = "&date=" + dateValue;
-        String thumbnailExtension = "&thumbs="+true;
-        response = restTemplate.getForObject(templateUrl + apiKey + dateParamExtension + thumbnailExtension, String.class);
-        JSONParser parser = new JSONParser();
-        JSONObject object = (JSONObject) parser.parse(response);
-        String thumbnailUrlValue = (String)object.get("thumbnail_url");
-        Assert.assertNull("Thumbnail url should not be null",thumbnailUrlValue);
+        String thumbnailExtension = "&thumbs=" + true;
+        try {
+            response = restTemplate.getForObject(templateUrl + apiKey + dateParamExtension + thumbnailExtension, String.class);
+            JSONParser parser = new JSONParser();
+            JSONObject object = (JSONObject) parser.parse(response);
+            String thumbnailUrlValue = (String) object.get("thumbnail_url");
+            Assert.assertNull("Thumbnail url should not be null", thumbnailUrlValue);
+        } catch(HTTPException ex){
+            Assert.fail("HTTP Exception is not expected "+ex.getMessage());
+        } catch(HttpServerErrorException ex){
+            Assert.fail("HTTPServerError Exception is not expected "+ex.getMessage());
+        } catch(HttpClientErrorException ex){
+            Assert.fail("HTTPClientError Exception is not expected "+ex.getMessage());
+        }
     }
     @Test
     public void testThumbnailQueryParameterFalseForVideoFiles() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {
         String dateValue = "2018-02-26";
         String dateParamExtension = "&date=" + dateValue;
-        String thumbnailExtension = "&thumbs="+false;
-        response = restTemplate.getForObject(templateUrl + apiKey + dateParamExtension + thumbnailExtension, String.class);
-        JSONParser parser = new JSONParser();
-        JSONObject object = (JSONObject) parser.parse(response);
-        String thumbnailUrlValue = (String)object.get("thumbnail_url");
-        Assert.assertNull("Thumbnail url should not be null",thumbnailUrlValue);
+        String thumbnailExtension = "&thumbs=" + false;
+        try {
+            response = restTemplate.getForObject(templateUrl + apiKey + dateParamExtension + thumbnailExtension, String.class);
+            JSONParser parser = new JSONParser();
+            JSONObject object = (JSONObject) parser.parse(response);
+            String thumbnailUrlValue = (String) object.get("thumbnail_url");
+            Assert.assertNull("Thumbnail url should not be null", thumbnailUrlValue);
+        }catch(HTTPException ex){
+            Assert.fail("HTTP Exception is not expected "+ex.getMessage());
+        } catch(HttpServerErrorException ex){
+            Assert.fail("HTTPServerError Exception is not expected "+ex.getMessage());
+        } catch(HttpClientErrorException ex){
+            Assert.fail("HTTPClientError Exception is not expected "+ex.getMessage());
+        }
     }
     @Test
     public void testThumbnailQueryParameterFalseForNonVideoFiles() throws HTTPException, HttpClientErrorException, HttpServerErrorException,ParseException {

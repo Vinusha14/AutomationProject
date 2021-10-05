@@ -21,7 +21,7 @@ As MNTN is into performance marketing platform, MNTN's APIs would be handling a 
 4. I chose Rest template in Spring framework to interact with the Rest Client as it provides many functionalities to interact 
 with the API 
 5. Other tools/technologies used are : Java, JUnit, Maven, IntelliJ, JSON, JSON Parser, command prompt 
-6. Added 42 tests in total covering below testing strategies
+6. Added 41 tests in total covering below testing strategies
    1. Functional testing
    2. Negative testing with valid and invalid inputs
    3. Destructive testing
