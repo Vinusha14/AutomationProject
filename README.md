@@ -2,13 +2,15 @@
 
 Automation framework written using JAVA, Spring, JUnit and MAVEN
 
-#Table of Contents
+##Table of Contents
 1. [Explanation of my approach](#Explanation_of_my_approach)
 2. [Setup environment to run tests](#setup_environment)
-3. [PROS](#pros)
-4. [CONS](#cons)
-5. [Feedback](#feedback)
-6. [Author](#author)
+   1. [Install and Setup JAVA in Windows](#setup_java)
+   2. [Install and Setup MAVEN in Windows](#setup_maven)
+   3. [Run framework tests from command prompt](#run_tests_command_prompt)
+3. [Pros](#pros)
+4. [Cons](#cons)
+
 
 ## Explanation of my approach: <a name="Explanation_of_my_approach"></a>
 1. Purpose of choosing to automate NASA API is to work with data handling of high resolution image/video information.
@@ -27,9 +29,8 @@ with the API
    5. Performance sanity testing with load and stress testing
    6. Query parameter testing (covered testing all parameters in framework - API_KEY, count, date, start_date, end_date, hd, thumbs; concept_tags functionality turned off in current service)
   
-#Build/Run test configuration steps <a name="setup_environment"></a>
-
-#Install JAVA on Windows <a name="setup_java"></a>
+##Build/Run test configuration steps <a name="setup_environment"></a>
+##Install JAVA on Windows <a name="setup_java"></a>
 1. Download or save the appropriate JDK version for Windows here: https://www.oracle.com/java/technologies/downloads/
 2. Right-click the Computer icon on your desktop and select Properties.
 3. Click Advanced system settings.
@@ -48,7 +49,7 @@ should display the below similar example message:
       Java(TM) SE Runtime Environment (build 1.8.0_301-b09)
       Java HotSpot(TM) 64-Bit Server VM (build 25.301-b09, mixed mode)
 
-#Install and setup MAVEN <a name="setup_maven"></a>
+##Install and setup MAVEN <a name="setup_maven"></a>
 1. Maven can be downloaded from this location https://maven.apache.org/download.cgi (You can choose your own location)
 2. Right-click the Computer icon on your desktop and select Properties.
 3. Click Advanced system settings.
@@ -66,7 +67,7 @@ should display the below similar example message:
       Default locale: en_MY, platform encoding: Cp1252
       OS name: "windows 10", version: "10.0", arch: "amd64", family: "windows"
 
-#Run Tests of the Framework from command prompt in Windows:<a name="run_tests_command_prompt"></a>
+##Run Tests of the Framework from command prompt in Windows:<a name="run_tests_command_prompt"></a>
 1. Download the code repository from the below GitHub repo link under Code Tab- Download Zip link
 https://github.com/Vinusha14/AutomationProject
 2. Unzip the downloaded project into your desired location eg: C:\Users\Vinusha\GitHubProjects
@@ -76,7 +77,7 @@ https://github.com/Vinusha14/AutomationProject
 5. Run the maven test command to execute all tests in the framework
    mvn test -Dtest="**"
 
-PROS:
+##PROS:<a name="pros"></a>
 1. Rest template is thread safe 
 2. If we want to make an HTTP Call, we need to create an HttpClient, pass request and form parameters, setup accept headers and perform unmarshalling of response, all by yourself, 
 Spring Rest Templates tries to take the pain away by abstracting all these details from you.
@@ -112,7 +113,7 @@ other HTTPExceptions, parseexceptions,HTTPServerErrorExceptions and HTTPClientEr
        – Invalid values in HTTP headers
        – Unsupported methods for endpoints
     
-       CONS:
+##CONS: <a name="cons"></a>
 19. loggers?
 20. penetration testing?
 21. multiple asynch requests to the API
