@@ -16,7 +16,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 
-public class ImageTests {
+public class ImageTest {
     public static RestTemplate restTemplate;
     public static String baseUrl = "https://api.nasa.gov";
     public static String apiKey = "cvxjev456MzhfJbw9JFrZOJIvMRByegGqqcbmFMI";

@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.xml.ws.http.HTTPException;
 
 
-public class ApiKeyParameterTests {
+public class ApiKeyParameterTest {
     public static RestTemplate restTemplate;
     public String baseUrl = "https://api.nasa.gov";
     public String apiKey = "";

@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.xml.ws.http.HTTPException;
 import java.time.LocalDate;
 
-public class DateQueryParameterTests {
+public class DateQueryParameterTest {
     public static RestTemplate restTemplate;
     public String baseUrl = "https://api.nasa.gov";
     public String apiKey = "cvxjev456MzhfJbw9JFrZOJIvMRByegGqqcbmFMI";
