@@ -64,7 +64,6 @@ public class StartAndEndDateQueryParameterTest {
             response = restTemplate.getForObject(templateUrl + apiKey + dateParamExtension, String.class);
         } catch (HttpClientErrorException ex) {
             Assert.assertEquals("Bad request response code should be returned from server", 400, ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
         }
     }
     /*
@@ -79,7 +78,6 @@ public class StartAndEndDateQueryParameterTest {
             response = restTemplate.getForObject(templateUrl + apiKey + dateParamExtension, String.class);
         } catch (HttpClientErrorException ex) {
             Assert.assertEquals("Bad request response code should be returned from server", 400, ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
         }
     }
 
@@ -96,7 +94,6 @@ public class StartAndEndDateQueryParameterTest {
             response = restTemplate.getForObject(templateUrl + apiKey + dateParamExtension, String.class);
         } catch (HttpClientErrorException ex) {
             Assert.assertEquals("Bad request response code should be returned from server", 400, ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
         }
     }
 

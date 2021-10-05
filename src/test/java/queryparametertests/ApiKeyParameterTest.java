@@ -32,7 +32,6 @@ public class ApiKeyParameterTest {
               restTemplate.getForObject(templateUrl + apiKey, String.class);
         } catch(HttpClientErrorException exception){
             Assert.assertEquals("Without API key server is supposed to return 403 error",403,exception.getRawStatusCode());
-            System.out.println(exception.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){
@@ -49,24 +48,6 @@ public class ApiKeyParameterTest {
            restTemplate.getForObject(templateUrl + apiKey, String.class);
         } catch(HttpClientErrorException exception){
             Assert.assertEquals("Without API key server is supposed to return 403 error",403,exception.getRawStatusCode());
-            System.out.println(exception.getMessage());
-        } catch(HTTPException ex){
-            throw ex;
-        } catch(HttpServerErrorException ex){
-            throw ex;
-        }
-    }
-    /*
-    Test to send request to the API with Demo key to return a successful response
-     */
-    @Test
-    public void testResponseWithDemoKeyInURI(){
-        apiKey="DEMO_KEY";
-        try {
-            ResponseEntity<String> responseEntity = restTemplate.getForEntity(templateUrl + apiKey, String.class);
-            Assert.assertEquals("Given API key is expected to return a successful API response(200)",200,responseEntity.getStatusCodeValue());
-        } catch(HttpClientErrorException exception){
-            System.out.println(exception.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){
@@ -86,7 +67,6 @@ public class ApiKeyParameterTest {
             restTemplate.getForEntity(templateUrl + apiKey + returnFieldInUrlExtension, String.class);
         } catch(HttpClientErrorException exception){
             Assert.assertEquals("Without API key server is supposed to return 400 Bad Request error",400,exception.getRawStatusCode());
-            System.out.println(exception.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){
@@ -107,7 +87,6 @@ public class ApiKeyParameterTest {
             restTemplate.getForEntity(templateUrl + apiKey, String.class);
         } catch(HttpClientErrorException exception){
             Assert.assertEquals("With HTTP method in URL server is supposed to return 400 Bad Request error",400,exception.getRawStatusCode());
-            System.out.println(exception.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){

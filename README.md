@@ -74,7 +74,7 @@ https://github.com/Vinusha14/AutomationProject
 2. Unzip the downloaded project into your desired location eg: C:\Users\Vinusha\GitHubProjects
 3. Search and Open command prompt in Windows
 4. cd to the project location 
-    cd C:\Users\Vinusha\GitHubProjects\AutomationProject-master\AutomationProject-master
+    cd C:\Users\Vinusha\GitHubProjects\AutomationProject-master\
 5. Run the maven test command to execute all tests in the framework
    mvn test -Dtest="**"
 

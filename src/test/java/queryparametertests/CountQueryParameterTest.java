@@ -50,7 +50,6 @@ public class CountQueryParameterTest {
             response = restTemplate.getForObject(templateUrl + apiKey + countParamExtension, String.class);
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){
@@ -65,7 +64,6 @@ public class CountQueryParameterTest {
             response = restTemplate.getForObject(templateUrl + apiKey + countParamExtension, String.class);
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){
@@ -80,7 +78,6 @@ public class CountQueryParameterTest {
             response = restTemplate.getForObject(templateUrl + apiKey + countParamExtension, String.class);
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){
@@ -113,7 +110,6 @@ public class CountQueryParameterTest {
             response = restTemplate.getForObject(templateUrl + apiKey + countParamExtension, String.class);
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){

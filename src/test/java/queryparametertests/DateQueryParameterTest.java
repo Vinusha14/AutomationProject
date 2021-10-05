@@ -56,7 +56,6 @@ public class DateQueryParameterTest {
             restTemplate.getForObject(templateUrl + apiKey + urlExtensionWithDate, String.class);
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){
@@ -75,7 +74,6 @@ public class DateQueryParameterTest {
             restTemplate.getForObject(templateUrl + apiKey + urlExtensionWithDate, String.class);
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){
@@ -93,7 +91,6 @@ public class DateQueryParameterTest {
             restTemplate.getForObject(templateUrl + apiKey + urlExtensionWithDate, String.class);
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){
@@ -134,7 +131,6 @@ public class DateQueryParameterTest {
             restTemplate.getForObject(templateUrl + apiKey + urlExtensionWithDate, String.class);
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){
@@ -153,7 +149,6 @@ public class DateQueryParameterTest {
             String response = restTemplate.getForObject(templateUrl + apiKey + urlExtensionWithDate, String.class);
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){
@@ -172,7 +167,6 @@ public class DateQueryParameterTest {
             restTemplate.getForObject(templateUrl + apiKey + urlExtensionWithDate, String.class);
         } catch(HttpClientErrorException ex){
             Assert.assertEquals("Bad Request status code - 400 is returned",400,ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
         } catch(HTTPException ex){
             throw ex;
         } catch(HttpServerErrorException ex){
@@ -187,7 +181,6 @@ public class DateQueryParameterTest {
         String date = "2001-04-12";
         try {
             String response = restTemplate.getForObject(templateUrl + apiKey + "&date=" + date, String.class);
-            System.out.println(response);
             JSONParser parser = new JSONParser();
             JSONObject object = (JSONObject) parser.parse(response);
             String array = (String) object.get("date");
