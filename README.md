@@ -30,6 +30,7 @@ with the API
    6. Query parameter testing (covered testing all parameters in framework - API_KEY, count, date, start_date, end_date, hd, thumbs; concept_tags functionality turned off in current service)
   
 ##Build/Run test configuration steps <a name="setup_environment"></a>
+
 ##Install JAVA on Windows <a name="setup_java"></a>
 1. Download or save the appropriate JDK version for Windows here: https://www.oracle.com/java/technologies/downloads/
 2. Right-click the Computer icon on your desktop and select Properties.

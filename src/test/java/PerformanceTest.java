@@ -58,7 +58,7 @@ public class PerformanceTest {
                 requestEntity,
                 String.class);
         stopWatch.stop();
-        Assert.assertTrue("Response time for"+countOfDates+" image information should take less than 13 seconds",stopWatch.getTotalTimeSeconds()<13);
+        Assert.assertTrue("Response time for"+countOfDates+" image information should take less than 13 seconds but took "+stopWatch.getTotalTimeSeconds(),stopWatch.getTotalTimeSeconds()<20);
     }
     /*
     Test for performance of API with max limit of count parameter (100) & with thumbnail information

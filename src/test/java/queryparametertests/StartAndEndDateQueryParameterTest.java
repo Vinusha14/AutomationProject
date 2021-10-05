@@ -1,4 +1,4 @@
-package queryParameterTests;
+package queryparametertests;
 
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;

@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="AutomationProject" />
+        <module name="nasa-apod-api-automation-framework" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="AutomationProject" target="8" />
+      <module name="nasa-apod-api-automation-framework" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

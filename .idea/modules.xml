@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AutomationProject.iml" filepath="$PROJECT_DIR$/AutomationProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nasa-apod-api-automation-framework.iml" filepath="$PROJECT_DIR$/nasa-apod-api-automation-framework.iml" />
     </modules>
   </component>
 </project>
