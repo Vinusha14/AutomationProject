@@ -31,6 +31,7 @@ with the API
    
 ##Test Results 
    ![image](https://user-images.githubusercontent.com/23089178/136060136-e1ade710-a0c7-4f81-99f6-4ea7fcbd3749.png)
+   ![Alt text](https://github.com/Vinusha14/AutomationProject/blob/master/TestExecutionAnimation.gif)
 
 ##Build/Run test configuration steps <a name="setup_environment"></a>
 
