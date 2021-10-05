@@ -28,7 +28,10 @@ with the API
    4. Basic Security and Authorization sanity testing
    5. Performance sanity testing with load and stress testing
    6. Query parameter testing (covered testing all parameters in framework - API_KEY, count, date, start_date, end_date, hd, thumbs; concept_tags functionality turned off in current service)
-  
+   
+##Test Results 
+   ![image](https://user-images.githubusercontent.com/23089178/136060136-e1ade710-a0c7-4f81-99f6-4ea7fcbd3749.png)
+
 ##Build/Run test configuration steps <a name="setup_environment"></a>
 
 ##Install JAVA on Windows <a name="setup_java"></a>
