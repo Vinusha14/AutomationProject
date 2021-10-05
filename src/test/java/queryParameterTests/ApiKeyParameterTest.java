@@ -10,8 +10,9 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.xml.ws.http.HTTPException;
-
-
+/*
+APIKeyParameterTest includes basic Security and authorization testing methods
+ */
 public class ApiKeyParameterTest {
     public static RestTemplate restTemplate;
     public String baseUrl = "https://api.nasa.gov";

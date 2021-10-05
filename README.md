@@ -78,48 +78,22 @@ https://github.com/Vinusha14/AutomationProject
    mvn test -Dtest="**"
 
 ##PROS:<a name="pros"></a>
-1. Rest template is thread safe 
-2. If we want to make an HTTP Call, we need to create an HttpClient, pass request and form parameters, setup accept headers and perform unmarshalling of response, all by yourself, 
-Spring Rest Templates tries to take the pain away by abstracting all these details from you.
-3. Test cases part of this automation framework cover extensive testing of all query parameters API exposes
-4. Calling the API with different parameter values
-5. covered API boundary value conditions
-6. lot of negative and destructive testing
-7. Basic Peformance test sanity tes cases added - stress and load
-8. Security testing aspect considered 
-9. Handling multiple HTTP status code responses from API not just 200 and happy path. eg: 400 bad request, 405 method not allowed,
-other HTTPExceptions, parseexceptions,HTTPServerErrorExceptions and HTTPClientErrorExceptions
-10. Clear documentation of tests for extension of framework - self explanatory
-11. included HTTP method testing
-12. return field testing
-13. Extended positive testing with optional parameters
-    Negative testing with valid input
-    Negative testing with invalid input
-    Destructive testing
-    1.Intentionally attempt to fail the API to check its robustness:
-    Malformed content in request
-    Overflow parameter values. E.g.:
-    – Attempt to create a user configuration with a title longer than 200 characters
-    Basic Security, authorization - check HTTP/HTTPS
-14. Testing requests in isolation
-15. testing multiple query parameters together
-16. Validate HTTP headers of the API
-17. Validating payload - JSON
-18. Negative testing - invalid input 
-    1. Missing or invalid authorization token
-    2. Missing required parameters
-    3. Payload with incomplete model (missing fields or required nested entities)
-       – Invalid values in nested entity fields
-       – Invalid values in HTTP headers
-       – Unsupported methods for endpoints
+1. Spring Rest Template is thread safe 
+2. Spring Rest Template provides higher level of abstraction which can avoid a user to make an HTTP Call, create a HttpClient, pass request and form parameters, setup accept headers and perform unmarshalling of response 
+3. Test cases part of this automation framework cover extensive (positive, negative with valid and invalid inputs, boundary value and destructive) testing of all query parameters API exposes
+4. Framework also covers basic Performance sanity tests to measure the response time from the API calls including stress and load tests
+5. Security and authorization testing aspect included in the framework (APIKeyParameterTest)
+6. Handling multiple HTTP status code responses from API not just 200 and happy path. eg: 400 bad request, 405 method not allowed,
+7. Clear and self-explanatory documentation of tests for ease of a user to execute future extension of framework 
+8. Negative testing with unsupported HTTP methods for endpoint
+10. Testing API requests in isolation
+11. Testing multiple query parameters together
+12. Validate HTTP headers of the API
+13. Validating API payload - JSON
     
 ##CONS: <a name="cons"></a>
-19. loggers?
-20. penetration testing?
-21. multiple asynch requests to the API
-22. Timeout
-23. exception handling
-24. Key limit 
-25. could have missed combination of test cases or more extension
-performance testing 
-26. more security testing
+1. Including Loggers in the tests for easy categorization of the type of error or to send Logging information to files/databases
+2. Spring Rest Template uses the thread-per-request model which could degrade the performance of the application when there is multiple user access 
+3. Handling of Asynchronous requests to the API could be later added in the scope of the framework
+4. Would later want to extend the framework to fetch re-generated new API Keys from this location https://api.nasa.gov/ from the framework 
+especially if we want to add scalability in a framework to allow more than 1000 requests/hour with the api key provided  (could use selenium webdriver to automate)

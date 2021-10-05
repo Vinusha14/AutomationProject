@@ -73,21 +73,6 @@ public class CountQueryParameterTest {
         }
     }
     @Test
-    public void testResponseWithCountParamValueGreaterThanMaxLimit(){
-        int countValue = 238;
-        String countParamExtension="&count="+countValue;
-        try {
-            response = restTemplate.getForObject(templateUrl + apiKey + countParamExtension, String.class);
-        } catch(HttpClientErrorException ex){
-            Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
-            System.out.println(ex.getMessage());
-        } catch(HTTPException ex){
-            throw ex;
-        } catch(HttpServerErrorException ex){
-            throw ex;
-        }
-    }
-    @Test
     public void testResponseWithCountParamValueLessThanMinLimit(){
         int countValue = 0;
         String countParamExtension="&count="+countValue;

@@ -85,6 +85,25 @@ public class PerformanceTest {
         Assert.assertTrue("Response time for"+countOfDates+" image information with thumbnail url information request " +
                 " should take less than 15 seconds",stopWatch.getTotalTimeSeconds()<15);
     }
+    /*
+    Stress test the API to test the robustness of the system (API) by passing count query parameter
+    value more than the max limit set
+     */
+    @Test
+    public void testResponseWithCountParamValueGreaterThanMaxLimit(){
+        int countValue = 238;
+        String countParamExtension="&count="+countValue;
+        try {
+            restTemplate.getForObject(templateUrl + apiKey + countParamExtension, String.class);
+        } catch(HttpClientErrorException ex){
+            Assert.assertEquals("Bad request response code should be returned from server",400,ex.getRawStatusCode());
+            System.out.println(ex.getMessage());
+        } catch(HTTPException ex){
+            Assert.fail("HTTP Exception is not expected");
+        } catch(HttpServerErrorException ex){
+            Assert.fail("HTTP Server Error Exception is not expected");
+        }
+    }
 }
 
 
